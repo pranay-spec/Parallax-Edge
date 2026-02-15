@@ -1,0 +1,4 @@
+Scraping: https://www.flipkart.com/search?q=laptop
+Found 24 data-id cards
+Analyzing first card structure:
+  Div Class: ['jIjQ8S']

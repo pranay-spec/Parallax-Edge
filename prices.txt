@@ -1,0 +1,14 @@
+﻿Total products: 11
+
+amazon_in          | Rs294.0 + Rs0.0 = Rs 294.0 | Carnation Evaporated Milk â Rich & Creamy Full F
+amazon_in          | Rs 75.0 + Rs0.0 = Rs  75.0 | Amul
+amazon_in          | Rs 32.0 + Rs0.0 = Rs  32.0 | Amul
+amazon_in          | Rs 79.0 + Rs0.0 = Rs  79.0 | Amul
+blinkit            | Rs 16.0 + Rs0.0 = Rs  16.0 | Amul Taaza Tetra Milk 200ml
+zepto              | Rs 16.0 + Rs0.0 = Rs  16.0 | Amul Taaza Tetra Milk 200ml
+swiggy_instamart   | Rs 16.0 + Rs0.0 = Rs  16.0 | Amul Taaza Tetra Milk 200ml
+amazon_in          | Rs 75.0 + Rs0.0 = Rs  75.0 | Mother Dairy
+blinkit            | Rs 16.0 + Rs0.0 = Rs  16.0 | Amul Taaza Homogenized Milk 200ml
+zepto              | Rs 16.0 + Rs0.0 = Rs  16.0 | Amul Taaza Homogenized Milk 200ml
+swiggy_instamart   | Rs 16.0 + Rs0.0 = Rs  16.0 | Amul Taaza Homogenized Milk 200ml
+
