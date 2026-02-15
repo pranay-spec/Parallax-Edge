@@ -8,4 +8,4 @@ services:
     envVars:
       - key: PORT
         value: 10000
-    root: backend # Specifies that the service code is in the 'backend' folder
+    rootDir: backend # Specifies that the service code is in the 'backend' folder
