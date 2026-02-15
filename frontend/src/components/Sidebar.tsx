@@ -181,30 +181,37 @@ export default function Sidebar({
                     gap: 16,
                     padding: '18px 16px 14px',
                     flexShrink: 0,
-                }}>
-                    <button
-                        id="sidebar-toggle"
-                        onClick={onToggle}
-                        style={{
-                            width: 40, height: 40, borderRadius: 50,
-                            background: 'transparent', border: 'none',
-                            cursor: 'pointer', color: '#e4e4e7',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            flexShrink: 0,
-                        }}
-                    >
-                        <Menu size={22} />
-                    </button>
-
-                    {isExpanded && (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                    cursor: 'pointer'
+                }}
+                    onClick={onSectionChange ? () => onSectionChange('home') : undefined}
+                >
+                    {isExpanded ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                             <div style={{
-                                width: 28, height: 28, borderRadius: 8,
-                                background: 'linear-gradient(135deg, #6366f1, #06b6d4)',
+                                width: 32, height: 32, borderRadius: 10,
+                                background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                fontSize: 14, fontWeight: 800, color: '#fff', flexShrink: 0,
-                            }}>P</div>
-                            <span style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>Parallax Edge</span>
+                                fontSize: 18, fontWeight: 800, color: '#fff',
+                                boxShadow: '0 0 15px rgba(6, 182, 212, 0.4)'
+                            }}>
+                                <Zap size={20} fill="currentColor" />
+                            </div>
+                            <div>
+                                <div style={{ fontSize: 16, fontWeight: 800, color: '#fff', letterSpacing: -0.5, lineHeight: 1 }}>PARALLAX</div>
+                                <div style={{ fontSize: 12, fontWeight: 600, color: '#06b6d4', letterSpacing: 2 }}>EDGE</div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div style={{
+                            width: 40, height: 40, borderRadius: 12,
+                            background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            color: '#fff',
+                            boxShadow: '0 0 15px rgba(6, 182, 212, 0.3)'
+                        }}
+                            title="Parallax Edge"
+                        >
+                            <Zap size={22} fill="currentColor" />
                         </div>
                     )}
                 </div>
