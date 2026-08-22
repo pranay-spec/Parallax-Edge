@@ -1,0 +1,33 @@
+/* Accessibility Focus Ring Standards & Responsive Navigation */
+
+/* Visible Focus Indicator for Keyboard Tab Navigation */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[role="button"]:focus-visible {
+    outline: 2px solid #06b6d4 !important;
+    outline-offset: 2px !important;
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Responsive Hide/Show Helpers */
+@media (min-width: 768px) {
+    .mobile-only-nav {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .desktop-only-sidebar {
+        display: none !important;
+    }
+}

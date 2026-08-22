@@ -1,0 +1,42 @@
+# Secrets and Environment Variables
+.env
+*.env
+backend/.env
+frontend/.env
+*.env.local
+*.env.*.local
+
+# Python
+__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+env/
+*.db
+*.sqlite3
+backend/data_warehouse.db
+
+# Node / Next.js
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+out/
+frontend/out/
+*.log
+frontend/*.log
+backend/*.log
+frontend/dev_*.log
+backend/*_log.txt
+backend/output.txt
+backend/campus_out.txt
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
