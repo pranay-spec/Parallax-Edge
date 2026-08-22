@@ -1,6 +1,14 @@
 import { SearchResponse, CountryCode, CartOptimizationResponse } from '@/types';
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+export const getApiUrl = (): string => {
+    if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
+    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        return 'https://parallax-edge-server.onrender.com';
+    }
+    return 'http://localhost:8000';
+};
+
+export const API_URL = getApiUrl();
 
 export async function searchProducts(
     query: string,
