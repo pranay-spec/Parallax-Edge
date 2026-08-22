@@ -496,58 +496,6 @@ export default function ShoppingAgent({ symbol, pincode, country }: ShoppingAgen
                                          })}
                                      </div>
                                  )}
-
-                                {/* Budget Plan */}
-                                {m.budgetPlan && (
-                                    <div style={{
-                                        background: 'linear-gradient(135deg, #18181b, #0a0a0f)', border: '1px solid #27272a',
-                                        borderRadius: 20, padding: 20, boxShadow: '0 10px 30px rgba(0,0,0,0.3)', marginTop: 4
-                                    }}>
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
-                                            <div>
-                                                <h3 style={{ margin: 0, fontSize: 18, fontWeight: 800, color: '#fff', display: 'flex', alignItems: 'center', gap: 8 }}>
-                                                    <Sparkles size={18} color="#8b5cf6" /> {m.budgetPlan.plan_name}
-                                                </h3>
-                                            </div>
-                                            <div style={{ textAlign: 'right' }}>
-                                                <div style={{ fontSize: 11, color: '#a1a1aa', fontWeight: 600, textTransform: 'uppercase' }}>Total Budget</div>
-                                                <div style={{ fontSize: 22, fontWeight: 800, color: '#22c55e' }}>{symbol}{m.budgetPlan.total_budget.toLocaleString()}</div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                                            {m.budgetPlan.categories.map((cat: any, idx: number) => {
-                                                const hasProduct = !!cat.product;
-                                                return (
-                                                    <div key={idx} style={{
-                                                        background: '#111114', border: '1px solid #27272a', borderRadius: 12, padding: 12,
-                                                        display: 'flex', justifyContent: 'space-between', alignItems: 'center'
-                                                    }}>
-                                                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                                                            <div style={{ fontSize: 24 }}>{cat.emoji}</div>
-                                                            <div>
-                                                                <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>{cat.name}</div>
-                                                                <div style={{ fontSize: 12, color: '#a1a1aa', maxWidth: 260, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                                                    {hasProduct ? cat.product.title : (cat.suggested_item || `Recommended ${cat.name}`)}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div style={{ textAlign: 'right' }}>
-                                                            <div style={{ fontSize: 15, fontWeight: 800, color: '#06b6d4' }}>
-                                                                {symbol}{cat.allocated_budget.toLocaleString()}
-                                                            </div>
-                                                            {hasProduct && (
-                                                                <div style={{ fontSize: 11, color: '#22c55e' }}>
-                                                                    Cost: {symbol}{cat.product.price_breakdown?.total_landed_cost?.toLocaleString() || cat.product.price?.toLocaleString()}
-                                                                </div>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                )}
                             </div>
                         </div>
                     ))

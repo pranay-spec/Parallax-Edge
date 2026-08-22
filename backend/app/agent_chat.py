@@ -1160,7 +1160,7 @@ async def _keyword_fallback(msg: str, raw_msg: str, pincode: str, country: Count
                     in_stock=True,
                     delivery_speed=DeliverySpeed.STANDARD
                 ))
-        return f"Smart **{plan_name}** for Rs.{ub:,} — top recommended hardware picks:", setup_prods, {"plan_name": plan_name, "total_budget": ub, "categories": categories}
+        return f"Here are the top recommended verified products for your **{plan_name}** within Rs.{ub:,}:", setup_prods, None
 
 
     # Parse intent, clean query, and resolve context
