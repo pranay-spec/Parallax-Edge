@@ -66,8 +66,9 @@ export default function WhatsAppAlertBot({ symbol = '₹', pincode = '560102' }:
             }
         }
 
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
         try {
-            const res = await fetch('http://localhost:8000/api/alerts/subscribe', {
+            const res = await fetch(`${apiUrl}/api/alerts/subscribe`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

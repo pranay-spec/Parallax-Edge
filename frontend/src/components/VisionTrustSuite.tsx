@@ -56,8 +56,9 @@ export default function VisionTrustSuite({ symbol = '₹', pincode = '560102', o
             setVisualScanning(true);
             setScannedProduct(null);
 
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
             try {
-                const res = await fetch('http://localhost:8000/vision/analyze', {
+                const res = await fetch(`${apiUrl}/vision/analyze`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ image_data: base64 })
@@ -71,7 +72,7 @@ export default function VisionTrustSuite({ symbol = '₹', pincode = '560102', o
 
                         // Try fetching live scraped prices from retailers for the detected product name
                         try {
-                            const searchRes = await fetch(`http://localhost:8000/search?query=${encodeURIComponent(detectedName)}&pincode=${pincode}`);
+                            const searchRes = await fetch(`${apiUrl}/search?query=${encodeURIComponent(detectedName)}&pincode=${pincode}`);
                             if (searchRes.ok) {
                                 const searchData = await searchRes.json();
                                 if (searchData.product_groups && searchData.product_groups.length > 0) {
@@ -147,8 +148,9 @@ export default function VisionTrustSuite({ symbol = '₹', pincode = '560102', o
             setReceiptScanning(true);
             setReceiptData(null);
 
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
             try {
-                const res = await fetch('http://localhost:8000/api/vision/receipt', {
+                const res = await fetch(`${apiUrl}/api/vision/receipt`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ image_data: base64 })
@@ -225,8 +227,9 @@ export default function VisionTrustSuite({ symbol = '₹', pincode = '560102', o
     const handleAnalyzeReviews = async () => {
         if (!reviewQuery.trim()) return;
         setAnalyzingReviews(true);
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
         try {
-            const res = await fetch('http://localhost:8000/api/vision/reviews', {
+            const res = await fetch(`${apiUrl}/api/vision/reviews`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ product_title: reviewQuery })
