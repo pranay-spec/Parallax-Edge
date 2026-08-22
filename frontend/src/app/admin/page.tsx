@@ -9,9 +9,11 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const [runningETL, setRunningETL] = useState(false);
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
     const fetchMetrics = async () => {
         try {
-            const res = await fetch('http://localhost:8000/admin/metrics');
+            const res = await fetch(`${apiUrl}/admin/metrics`);
             if (res.ok) {
                 const data = await res.json();
                 setMetrics(data);
@@ -32,7 +34,7 @@ export default function AdminDashboard() {
     const triggerETL = async () => {
         setRunningETL(true);
         try {
-            await fetch('http://localhost:8000/admin/etl-run', { method: 'POST' });
+            await fetch(`${apiUrl}/admin/etl-run`, { method: 'POST' });
             // ETL runs in background; metrics will update via polling
         } catch (err) {
             console.error('ETL Trigger failed:', err);

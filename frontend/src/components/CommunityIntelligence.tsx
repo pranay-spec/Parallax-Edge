@@ -222,9 +222,9 @@ export default function CommunityIntelligence({ symbol, pincode, insights, query
     const handleSearchReview = async (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         if (!searchQuery.trim()) return;
-        setLoadingReview(true);
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
         try {
-            const res = await fetch('http://localhost:8000/api/vision/reviews', {
+            const res = await fetch(`${apiUrl}/api/vision/reviews`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ product_title: searchQuery })

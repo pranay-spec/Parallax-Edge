@@ -22,8 +22,9 @@ export default function ReceiptScanner({ symbol }: { symbol: string }) {
         reader.onloadend = async () => {
             const base64data = reader.result as string;
 
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
             // Start API fetch
-            const fetchPromise = fetch('http://localhost:8000/api/vision/receipt', {
+            const fetchPromise = fetch(`${apiUrl}/api/vision/receipt`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ image_data: base64data })

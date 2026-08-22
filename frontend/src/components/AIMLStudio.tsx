@@ -13,7 +13,8 @@ export default function AIMLStudio({ symbol = '₹' }: AIMLStudioProps) {
 
     // Load anomalies on mount
     useEffect(() => {
-        fetch('http://localhost:8000/api/ml/anomalies')
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+        fetch(`${apiUrl}/api/ml/anomalies`)
         .then(r => r.json())
         .then(d => setAnomalies(d.anomalies || []))
         .catch(() => {
