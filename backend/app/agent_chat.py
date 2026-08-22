@@ -1084,31 +1084,51 @@ async def _keyword_fallback(msg: str, raw_msg: str, pincode: str, country: Count
     if is_setup:
         if is_gaming:
             plan_name, base, cats = "Gaming Setup", 80000, [
-                ("PC/Console","ðŸ–¥ï¸",35000), ("Monitor 144Hz","ðŸ“º",15000), ("Gaming Chair","ðŸª‘",10000),
-                ("Mechanical Keyboard","âŒ¨ï¸",3000), ("Gaming Mouse","ðŸ–±ï¸",2000),
-                ("Gaming Headset","ðŸŽ§",5000), ("UPS","ðŸ”‹",5000), ("XL Mousepad","ðŸŸ¦",1000),
+                ("PC / Console", "🖥️", 35000, "HP Victus / Lenovo IdeaCentre Tower"),
+                ("144Hz Monitor", "📺", 15000, "Acer Nitro 24\" 165Hz IPS Display"),
+                ("Gaming Chair", "🪑", 10000, "Green Soul Monster Ultimate Chair"),
+                ("Mechanical Keyboard", "⌨️", 3000, "Redragon K552 RGB Mechanical"),
+                ("Gaming Mouse", "🖱️", 2000, "Razer DeathAdder Essential 6400 DPI"),
+                ("Gaming Headset", "🎧", 5000, "HyperX Cloud Stinger 2 Core"),
+                ("UPS Battery Backup", "🔋", 5000, "APC Back-UPS 600VA"),
+                ("XL Mousepad", "🟩", 1000, "Redgear MP35 Speed Type Pad"),
             ]
         elif is_office:
             plan_name, base, cats = "Home Office Setup", 50000, [
-                ("Laptop","ðŸ’»",30000), ("External Monitor","ðŸ“º",8000), ("Ergonomic Chair","ðŸª‘",6000),
-                ("Keyboard+Mouse","âŒ¨ï¸",2500), ("Webcam","ðŸ“·",2000), ("Desk Lamp","ðŸ’¡",1500),
+                ("Laptop", "💻", 30000, "Lenovo IdeaPad Slim 3 15.6\""),
+                ("External Monitor", "📺", 8000, "Samsung 24\" FHD IPS Borderless"),
+                ("Ergonomic Chair", "🪑", 6000, "Wakefit High Back Ergonomic Chair"),
+                ("Wireless Combo", "⌨️", 2500, "Logitech MK295 Silent Wireless"),
+                ("HD Webcam", "📷", 2000, "Logitech C270 HD Webcam"),
+                ("Desk Lamp", "💡", 1500, "Wipro Smart LED Desk Lamp"),
             ]
         elif is_photo:
             plan_name, base, cats = "Photography Kit", 100000, [
-                ("Camera Body","ðŸ“·",60000), ("Zoom Lens","ðŸ”",20000), ("Tripod","ðŸ—œï¸",5000),
-                ("128GB Memory Card","ðŸ’¾",2000), ("Camera Bag","ðŸŽ’",3000), ("LED Light Panel","ðŸ’¡",10000),
+                ("Camera Body", "📷", 60000, "Sony Alpha ZV-E10 Mirrorless"),
+                ("Zoom Lens", "🔍", 20000, "Sigma 18-50mm f/2.8 DC DN"),
+                ("Tripod", "🔭", 5000, "Manfrotto Compact Advanced Tripod"),
+                ("128GB Memory Card", "💾", 2000, "SanDisk Extreme Pro 128GB UHS-I"),
+                ("Camera Bag", "🎒", 3000, "Lowepro Tahoe BP 150"),
+                ("LED Light Panel", "💡", 10000, "Godox LEDP260C Video Light"),
             ]
         else:
             plan_name, base, cats = "Custom Essentials Kit", 50000, [
-                ("Primary Device","ðŸ“¦",30000), ("Accessory Pack","ðŸ”Œ",10000), ("Audio Gear","ðŸŽ§",10000),
+                ("Primary Device", "📦", 30000, "Top-Rated Category Device"),
+                ("Accessory Pack", "🔌", 10000, "Multi-Port Fast Charging Hub"),
+                ("Audio Gear", "🎧", 10000, "Noise-Cancelling Wireless Earbuds"),
             ]
         ub = budget or base
         scale = ub / base
         categories = []
-        for name, emoji, cb in cats:
+        for name, emoji, cb, sug in cats:
             allocated = int(cb * scale)
-            categories.append({"name": name, "emoji": emoji, "allocated_budget": allocated})
-        return f"Smart **{plan_name}** for Rs.{ub:,} -- breakdown:", [], {"plan_name": plan_name, "total_budget": ub, "categories": categories}
+            categories.append({
+                "name": name,
+                "emoji": emoji,
+                "allocated_budget": allocated,
+                "suggested_item": sug
+            })
+        return f"Smart **{plan_name}** for Rs.{ub:,} — breakdown:", [], {"plan_name": plan_name, "total_budget": ub, "categories": categories}
 
 
     # Parse intent, clean query, and resolve context
