@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #09090b;
+  color: #fafafa;
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+
+/* Container */
+.main-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Card base */
+.card {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 16px;
+}
+
+/* Input base */
+.input-field {
+  background-color: #09090b;
+  border: 1px solid #3f3f46;
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: #fafafa;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-field:focus {
+  border-color: #22d3ee;
+}
+
+.input-field::placeholder {
+  color: #71717a;
+}
+
+/* Button */
+.btn-primary {
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  color: #000;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Platform badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-amazon {
+  background-color: #ff9900;
+  color: #000;
+}
+
+.badge-flipkart {
+  background-color: #2874f0;
+  color: #fff;
+}
+
+.badge-blinkit {
+  background-color: #f7c600;
+  color: #000;
+}
+
+.badge-zepto {
+  background-color: #8b5cf6;
+  color: #fff;
+}
+
+.badge-jiomart {
+  background-color: #0078ad;
+  color: #fff;
+}
+
+/* ETA badge */
+.eta-express {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.eta-standard {
+  background-color: #27272a;
+  color: #a1a1aa;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+/* Tag buttons */
+.tag-btn {
+  background-color: #27272a;
+  border: 1px solid #3f3f46;
+  color: #a1a1aa;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tag-btn:hover {
+  border-color: #22d3ee;
+  color: #22d3ee;
+}
+
+/* Product row */
+.product-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #27272a;
+  transition: background-color 0.2s;
+}
+
+.product-row:last-child {
+  border-bottom: none;
+}
+
+.product-row:hover {
+  background-color: #1f1f23;
+}
+
+/* Price highlight */
+.price-best {
+  color: #22c55e;
+  font-weight: 700;
+}
+
+.price-normal {
+  color: #fafafa;
+  font-weight: 600;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+/* Utility */
+.text-gradient {
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-muted {
+  color: #71717a;
+}
+
+.text-secondary {
+  color: #a1a1aa;
+}
