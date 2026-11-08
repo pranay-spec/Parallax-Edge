@@ -35,9 +35,9 @@ export default function ShoppingHealthScore({ symbol = '₹', onSearchTrigger }:
         if (!q) return;
 
         setSearchQuery(q);
-        setStatus('loading');
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
         try {
-            const res = await fetch('http://localhost:8000/api/oracle/health-score', {
+            const res = await fetch(`${apiUrl}/api/oracle/health-score`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query: q })

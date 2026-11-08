@@ -102,11 +102,11 @@ export default function AutonomousAgentCheckout({ symbol = '₹', pincode = '560
         return fallback;
     };
 
-    // Try to fetch search results, attempting multiple queries progressively
     const fetchSearchResults = async (queries: string[]): Promise<{ group: any; usedQuery: string } | null> => {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
         for (const q of queries) {
             try {
-                const res = await fetch(`http://localhost:8000/search?query=${encodeURIComponent(q)}&pincode=${pincode}`);
+                const res = await fetch(`${apiUrl}/search?query=${encodeURIComponent(q)}&pincode=${pincode}`);
                 if (res.ok) {
                     const data = await res.json();
                     if (data.product_groups && data.product_groups.length > 0) {
