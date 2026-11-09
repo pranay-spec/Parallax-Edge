@@ -75,8 +75,9 @@ export default function PurchaseSimulation({ symbol, compact = false, queryOverr
         setResult(null);
         setShowAllExpenses(false);
 
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
         // Start LLM fetch
-        const fetchPromise = fetch('http://localhost:8000/api/oracle/purchase-simulation', {
+        const fetchPromise = fetch(`${apiUrl}/api/oracle/purchase-simulation`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ query: q })

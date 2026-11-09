@@ -144,9 +144,10 @@ export default function CartPanel({
         setShowWhatIf(true);
         setLoadingWhatIf(true);
 
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
         try {
             const queries = items.map(i => i.product.title);
-            const res = await fetch('http://localhost:8000/optimize/what-if', {
+            const res = await fetch(`${apiUrl}/optimize/what-if`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ queries, postal_code: '110001', country: 'IN' })
