@@ -527,13 +527,9 @@ export default function ShoppingAgent({ symbol, pincode, country }: ShoppingAgen
                                                             <div style={{ fontSize: 24 }}>{cat.emoji}</div>
                                                             <div>
                                                                 <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>{cat.name}</div>
-                                                                {hasProduct ? (
-                                                                    <div style={{ fontSize: 12, color: '#a1a1aa', maxWidth: 200, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                                                        {cat.product.title}
-                                                                    </div>
-                                                                ) : (
-                                                                    <div style={{ fontSize: 12, color: '#ef4444' }}>No product found</div>
-                                                                )}
+                                                                <div style={{ fontSize: 12, color: '#a1a1aa', maxWidth: 260, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                                                    {hasProduct ? cat.product.title : (cat.suggested_item || `Recommended ${cat.name}`)}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div style={{ textAlign: 'right' }}>
