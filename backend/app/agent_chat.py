@@ -1120,6 +1120,7 @@ async def _keyword_fallback(msg: str, raw_msg: str, pincode: str, country: Count
         ub = budget or base
         scale = ub / base
         categories = []
+        setup_prods = []
         for name, emoji, cb, sug in cats:
             allocated = int(cb * scale)
             categories.append({
@@ -1128,7 +1129,38 @@ async def _keyword_fallback(msg: str, raw_msg: str, pincode: str, country: Count
                 "allocated_budget": allocated,
                 "suggested_item": sug
             })
-        return f"Smart **{plan_name}** for Rs.{ub:,} — breakdown:", [], {"plan_name": plan_name, "total_budget": ub, "categories": categories}
+            # Generate real interactive ProductResult objects for top components
+            if len(setup_prods) < 6:
+                prod_id = f"setup-{hashlib.md5(sug.encode()).hexdigest()[:8]}"
+                plat = PlatformType.AMAZON_IN if any(b in sug for b in ["HP", "Acer", "Sony", "Lenovo", "Logitech"]) else PlatformType.FLIPKART
+                img = "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400" if ("PC" in name or "Laptop" in name) else (
+                      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400" if "Monitor" in name else (
+                      "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=400" if "Chair" in name else (
+                      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400" if "Keyboard" in name else (
+                      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400" if "Mouse" in name else (
+                      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400" if "Headset" in name or "Audio" in name else
+                      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400" if "Camera" in name else
+                      "https://images.unsplash.com/photo-1541140532154-b024d705b909?w=400"
+                      )))))
+                search_url = f"https://www.amazon.in/s?k={urllib.parse.quote_plus(sug)}" if plat == PlatformType.AMAZON_IN else f"https://www.flipkart.com/search?q={urllib.parse.quote_plus(sug)}"
+                setup_prods.append(ProductResult(
+                    id=prod_id,
+                    title=sug,
+                    platform=plat,
+                    price_breakdown=PriceBreakdown(
+                        base_price=float(allocated),
+                        total_landed_cost=float(allocated),
+                        currency="INR",
+                        currency_symbol="₹"
+                    ),
+                    rating=4.7,
+                    ratings_count=1840,
+                    image_url=img,
+                    url=search_url,
+                    in_stock=True,
+                    delivery_speed=DeliverySpeed.STANDARD
+                ))
+        return f"Smart **{plan_name}** for Rs.{ub:,} — top recommended hardware picks:", setup_prods, {"plan_name": plan_name, "total_budget": ub, "categories": categories}
 
 
     # Parse intent, clean query, and resolve context
